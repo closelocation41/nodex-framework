@@ -3,6 +3,6 @@
 FROM node:18-alpine
 WORKDIR /app
 COPY . .
-RUN yarn install --production
+RUN npm install --development
 CMD ["node", "./src/app.js"]
 EXPOSE 3000
