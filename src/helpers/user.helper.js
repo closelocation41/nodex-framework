@@ -9,7 +9,6 @@ const getUserByID = async (id)=>{
 }
 const getUserDetails = async (filter)=>{
     try { 
-        console.log(filter)
        return await UserModel.find(filter);
     } catch (error) {
         throw error
