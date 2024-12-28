@@ -1,4 +1,4 @@
-const {UserModel} =  require("../models/user.model")
+const {UserModel}=  require("../models/user.model")
 
 const getUserByID = async (id)=>{
     try { 
@@ -7,12 +7,13 @@ const getUserByID = async (id)=>{
         throw error
     }
 }
-const getUserDetail = async (filter)=>{
+const getUserDetails = async (filter)=>{
     try { 
-       return await UserModel.findById(filter)
+        console.log(filter)
+       return await UserModel.find(filter);
     } catch (error) {
         throw error
     }
 }
 
-module.exports =  {getUserByID,getUserDetail}
+module.exports =  {getUserByID,getUserDetails}

@@ -19,7 +19,7 @@ const verifyToken = (req, res, next) => {
 const createToken = async (req, res, next) => {
     try {
         const { username, password } = req.body;
-        const user = await userHelper.getUserDetail({ username });
+        const user = await userHelper.getUserDetails({ username });
         if (!user) {
             return res.status(ERROR.AUTH.errorCode).json(ERROR.AUTH);
         }

@@ -6,9 +6,9 @@ router.get('/list',  userController.getUsers);
 
 router.post('/create',
   validateAddUser,
-  userController.createUser
+  userController.createUser 
 );
-router.patch('/update/:userId',
+router.patch('/update/:id',
   validateUpdateUser,
   userController.updateUser
 );

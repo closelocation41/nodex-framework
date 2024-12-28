@@ -4,7 +4,7 @@ const mainHelper = require('../helpers/main.helper')
 
 const getUsers = async (req, res)=>{
     try {
-        const result =await userService.getUsers();
+        const result =await userService.getUsers(req);
         let data = SUCCESS.READ.data(result)
         res.status(SUCCESS.READ?.statusCode).json(data);
     } catch (error) {
@@ -15,7 +15,7 @@ const getUsers = async (req, res)=>{
 
 const createUser = async (req, res)=>{
     try {
-        const result = await userService.createUser();
+        const result = await userService.createUser(req?.body);
         let data = SUCCESS.READ.data(result)
         res.status(SUCCESS.READ?.statusCode).json(data);
     } catch (error) {
@@ -26,8 +26,9 @@ const createUser = async (req, res)=>{
 
 const updateUser = async (req, res)=>{
     try {
-        let result =userService.getUsers();
-        res.status(SUCCESS.READ?.statusCode).json(SUCCESS.READ);
+        let result = await userService.updateUser(req);
+        let data = SUCCESS.READ.data(result)
+        res.status(SUCCESS.READ?.statusCode).json(data);
     } catch (error) {
         let err = mainHelper.showError(error);
         res.status(err?.errorCode).json(err);
