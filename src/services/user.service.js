@@ -21,8 +21,8 @@ const createUser = async (body)=>{
     try { 
        let {email,username,password} = body; 
        const user = await userHelper.getUserDetails({ email: body.email });
-        if (!user) {
-            throw ERROR.EXIST
+        if (user?.length !== 0) {
+            throw ERROR.EXIST;
         }
         password = await bcrypt.hash(password, 10);
        return await UserModel.insertMany([{email,username,password}]);
@@ -36,16 +36,15 @@ const updateUser = async (req)=>{
         const { id } = req.params; // The user's _id from the URL
         const { username, email } = req.body; // The data to update
       
-       const user = await userHelper.getUserDetails({ });
-        if (user) {
+       const user = await userHelper.getUserDetails({_id:id});
+        if (user?.length === 0) {
+            throw ERROR.NOT_FOUND;
+        }else{
             return await UserModel.findByIdAndUpdate(
                 id, // The _id of the document to update
                 { username, email }, // The update object containing the fields to update
                 { new: true } // Optional: returns the updated document, not the old one
-              );  
-              
-        }else{
-            throw ERROR.EXIST
+              ); 
         }
        
     } catch (error) {
