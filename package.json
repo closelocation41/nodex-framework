@@ -4,8 +4,8 @@
   "description": "node app",
   "main": "index.js",
   "scripts": {
-    "coverage": "nyc mocha test/**/*.test.js",
-    "test": "mocha test/**/*.test.js",
+    "coverage": "nyc mocha ./test/**/*.test.js",
+    "test": "mocha ./test/**/*.test.js",
     "start": "node ./src/app.js",
     "dev": "nodemon ./src/app.js"
   },
